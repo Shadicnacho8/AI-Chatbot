@@ -1,0 +1,45 @@
+{% macro render_field(field) %}
+<div class="w-full">
+  <label
+    for="{{ field.id }}"
+    class="block mb-1.5 text-sm font-medium text-gray-900 dark:text-white"
+    >{{ field.label }}</label
+  >
+  {{ field(class="transition-all bg-gray-50 border outline-none border-gray-300 text-gray-900
+  rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5
+  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+  **kwargs)|safe }}
+  <div class="mt-1">
+    {% for error in field.errors %}
+    <p class="text-red-500 text-sm tracking-wide">{{ error }}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %} {% macro render_alert() %}
+<div class="w-full" id="flash-alert">
+  {% if get_flashed_messages(True) %} {% for item in get_flashed_messages(True)
+  %} {% if item[0] == 'info' %}
+  <div
+    class="flex w-full items-center gap-2 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+    role="alert"
+  >
+    <p class="flex-grow w-full">{{item[1]}}</p>
+  </div>
+  {% elif item[0] == 'success' %}
+  <div
+    class="flex w-full items-center gap-2 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    <p class="flex-grow w-full">{{item[1]}}</p>
+  </div>
+  {% elif item[0] == 'error' %}
+  <div
+    class="flex w-full items-center gap-2 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-red-600/10 dark:text-red-400"
+    role="alert"
+  >
+    <p class="flex-grow w-full">{{item[1]}}</p>
+  </div>
+  {% endif%} {% endfor%} {% endif %}
+</div>
+{% endmacro %}

@@ -1,0 +1,125 @@
+{% extends "layouts/base.html" %} {% block content %}
+<header>
+  <nav class="flex items-center h-14 justify-end gap-5 container">
+    <button
+      id="theme-toggle"
+      class="px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg active:bg-gray-300 dark:active:bg-gray-600 hover:drop-shadow transition focus:bg-gray-200 dark:focus:bg-gray-700 focus:ring-2 focus:ring-indigo-500"
+      title="Toggle Theme Mode"
+    >
+      <svg
+        id="theme-toggle-dark-icon"
+        class="text-gray-600 dark:text-gray-200 hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.5rem"
+        height="1.5rem"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992zm5 1a2 2 0 0 0 2 2a2 2 0 0 0-2 2a2 2 0 0 0-2-2a2 2 0 0 0 2-2m2 7h2m-1-1v2"
+        />
+      </svg>
+      <svg
+        class="text-gray-600 dark:text-gray-200 hidden"
+        id="theme-toggle-light-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.5rem"
+        height="1.5rem"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"
+        />
+      </svg>
+    </button>
+    <button
+      class="px-3 py-2 hover:bg-red-200 dark:hover:bg-red-500/20 dark:focus:bg-red-500/20 rounded-lg active:bg-red-300 hover:drop-shadow transition focus:bg-red-200 focus:ring-2 focus:ring-red-500"
+      title="Logout"
+      onclick="handleLogout()"
+    >
+      <svg
+        class="text-red-500"
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.5rem"
+        height="1.5rem"
+        viewBox="0 0 24 24"
+      >
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        >
+          <path
+            d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2"
+          />
+          <path d="M9 12h12l-3-3m0 6l3-3" />
+        </g>
+      </svg>
+    </button>
+  </nav>
+</header>
+<div
+  class="container max-h-[calc(100vh-3.5rem)] h-full py-2 flex flex-col gap-5 overflow-hidden"
+>
+  <div id="chats-container" class="relative h-full py-1">
+    <!-- chat content -->
+  </div>
+  <div id="msg-container" class="flex flex-row-reverse relative">
+    <div class="relative flex w-full">
+      <figure
+        class="absolute bottom-0 mb-2.5 left-2 size-6 select-none pointer-events-none block"
+      >
+        <img
+          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+          alt="App Logo"
+        />
+      </figure>
+      <div
+        name="msg"
+        id="msg-box"
+        contenteditable="true"
+        role="textbox"
+        spellcheck="true"
+        class="overflow-auto min-h-11 max-h-64 pl-10 pr-14 transition-all duration-300 bg-gray-100 border outline-none border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      ></div>
+      <div
+        class="opacity-0 absolute self-center left-10 select-none pointer-events-none dark:text-gray-400"
+      >
+        Ask from AI
+      </div>
+    </div>
+    <div class="absolute bottom-0 mr-4 mb-1 right-0 z-10">
+      <button
+        type="button"
+        title="Send message"
+        id="send-msg-btn"
+        disabled="true"
+        class="bg-transparent p-1.5 rounded-full hover:bg-gray-50 hover:dark:bg-gray-600 transition-all duration-300 disabled:opacity-50"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#927cfd"
+            d="M13 20h-2V8l-5.5 5.5l-1.42-1.42L12 4.16l7.92 7.92l-1.42 1.42L13 8z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
